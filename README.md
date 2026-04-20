@@ -2,6 +2,10 @@
 
 A production-style case-study prototype for designing and simulating HR workflows (onboarding, leave approval, automation chains) with React Flow.
 
+## Live Demo
+
+[https://tredence-full-stack-case-study-wine.vercel.app/](https://tredence-full-stack-case-study-wine.vercel.app/)
+
 ## Screenshot
 
 ![HR Workflow Designer](./public/workflow-designer-screenshot.png)
