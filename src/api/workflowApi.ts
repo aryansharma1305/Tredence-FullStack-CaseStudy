@@ -3,6 +3,7 @@ import type {
   SimulateRequest,
   SimulateResponse
 } from '../types/workflow'
+import { automationActions, runMockSimulation } from './workflowRuntime'
 
 const toJson = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
@@ -20,18 +21,35 @@ const toJson = async <T>(response: Response): Promise<T> => {
 }
 
 export const getAutomations = async (): Promise<AutomationAction[]> => {
-  const response = await fetch('/automations')
-  return toJson<AutomationAction[]>(response)
+  try {
+    const response = await fetch('/automations')
+
+    if (response.status === 404) {
+      return automationActions
+    }
+
+    return await toJson<AutomationAction[]>(response)
+  } catch {
+    return automationActions
+  }
 }
 
 export const simulateWorkflow = async (payload: SimulateRequest): Promise<SimulateResponse> => {
-  const response = await fetch('/simulate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
+  try {
+    const response = await fetch('/simulate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
 
-  return toJson<SimulateResponse>(response)
+    if (response.status === 404) {
+      return runMockSimulation(payload)
+    }
+
+    return await toJson<SimulateResponse>(response)
+  } catch {
+    return runMockSimulation(payload)
+  }
 }
