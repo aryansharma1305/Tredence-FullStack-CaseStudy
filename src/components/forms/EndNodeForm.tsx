@@ -27,7 +27,7 @@ const EndNodeForm = ({ nodeId, data }: EndNodeFormProps) => {
           placeholder="Workflow complete"
         />
       </FormField>
-      <label className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
+      <label className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200">
         <span className="font-medium">Include summary</span>
         <input
           type="checkbox"
@@ -38,7 +38,7 @@ const EndNodeForm = ({ nodeId, data }: EndNodeFormProps) => {
               summaryFlag: event.target.checked
             }))
           }
-          className="h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-300"
+          className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#6b7bff] focus:ring-[#6b7bff]/30"
         />
       </label>
     </div>

@@ -10,11 +10,11 @@ export default {
         rose: '#fb7185'
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', 'sans-serif'],
-        body: ['"Manrope"', 'sans-serif']
+        heading: ['"Sora"', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif']
       },
       boxShadow: {
-        panel: '0 10px 30px rgba(15, 23, 42, 0.12)'
+        panel: '0 16px 34px rgba(20, 33, 56, 0.16)'
       },
       keyframes: {
         fadeUp: {

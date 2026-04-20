@@ -34,14 +34,14 @@ const NodeFormPanel = () => {
   const selectedNodeType = selectedNode?.type as WorkflowNodeType | undefined
 
   return (
-    <section className="animate-fade-up rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
+    <section className="animate-fade-up rounded-xl border border-white/10 bg-[#1f2330] p-4">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="font-heading text-lg text-slate-900">Node Configuration</h2>
+        <h2 className="font-heading text-lg text-slate-100">Node Configuration</h2>
         {(selectedNode || selectedEdge) && (
           <button
             type="button"
             onClick={deleteSelected}
-            className="rounded-md border border-slate-300 px-2.5 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+            className="rounded-md border border-white/20 px-2.5 py-1 text-xs font-semibold text-slate-200 transition hover:bg-white/10"
           >
             Delete
           </button>
@@ -49,21 +49,21 @@ const NodeFormPanel = () => {
       </div>
 
       {!selectedNode && !selectedEdge && (
-        <p className="mt-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-4 text-sm text-slate-500">
+        <p className="mt-3 rounded-lg border border-dashed border-white/20 bg-white/5 px-3 py-4 text-sm text-slate-400">
           Select a node or edge on the canvas to edit settings.
         </p>
       )}
 
       {selectedEdge && !selectedNode && (
         <div className="mt-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Selected Edge</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Selected Edge</p>
           <EdgeForm edgeId={selectedEdge.id} label={String(selectedEdge.label ?? '')} />
         </div>
       )}
 
       {selectedNode && (
         <div className="mt-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
             {selectedNodeType ? typeLabels[selectedNodeType] : 'Node'}
           </p>
           {selectedNodeType === 'start' && (

@@ -14,11 +14,19 @@ interface NodeShellProps {
 }
 
 const toneStyles = {
-  sky: 'border-sky-300 bg-sky-50/90 text-sky-900',
-  emerald: 'border-emerald-300 bg-emerald-50/90 text-emerald-900',
-  amber: 'border-amber-300 bg-amber-50/90 text-amber-900',
-  violet: 'border-violet-300 bg-violet-50/90 text-violet-900',
-  rose: 'border-rose-300 bg-rose-50/90 text-rose-900'
+  sky: 'border-l-4 border-l-sky-500',
+  emerald: 'border-l-4 border-l-emerald-500',
+  amber: 'border-l-4 border-l-amber-500',
+  violet: 'border-l-4 border-l-violet-500',
+  rose: 'border-l-4 border-l-rose-500'
+}
+
+const badgeStyles = {
+  sky: 'border-sky-200 bg-sky-100 text-sky-700',
+  emerald: 'border-emerald-200 bg-emerald-100 text-emerald-700',
+  amber: 'border-amber-200 bg-amber-100 text-amber-700',
+  violet: 'border-violet-200 bg-violet-100 text-violet-700',
+  rose: 'border-rose-200 bg-rose-100 text-rose-700'
 }
 
 const NodeShell = ({
@@ -35,13 +43,14 @@ const NodeShell = ({
   return (
     <div
       className={clsx(
-        'min-w-[220px] max-w-[260px] rounded-xl border bg-white p-3 shadow-sm transition',
-        selected ? 'border-slate-800 shadow-lg' : 'border-slate-200',
-        issues.length > 0 && 'border-rose-500'
+        'min-w-[220px] max-w-[260px] rounded-2xl border border-slate-300 bg-white p-3 shadow-sm transition',
+        toneStyles[tone],
+        selected ? 'ring-2 ring-[#5e6bff]' : '',
+        issues.length > 0 && 'border-rose-400'
       )}
     >
       <div className="flex items-center justify-between gap-2">
-        <span className={clsx('rounded-full border px-2 py-0.5 text-[11px] font-semibold', toneStyles[tone])}>
+        <span className={clsx('rounded-full border px-2 py-0.5 text-[11px] font-semibold', badgeStyles[tone])}>
           {badge}
         </span>
         {metadata}

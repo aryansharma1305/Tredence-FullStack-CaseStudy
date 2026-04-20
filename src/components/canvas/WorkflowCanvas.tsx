@@ -12,7 +12,7 @@ import 'reactflow/dist/style.css'
 import { workflowNodeTypes } from '../nodes'
 import { useWorkflowStore } from '../../store/workflowStore'
 import { isWorkflowNodeType } from '../../utils/nodeFactory'
-import NodePalette from './NodePalette'
+import CanvasToolbar from './CanvasToolbar'
 
 const WorkflowCanvasInner = () => {
   const nodes = useWorkflowStore((state) => state.nodes)
@@ -57,17 +57,19 @@ const WorkflowCanvasInner = () => {
   )
 
   return (
-    <div className="relative h-full animate-pop-in rounded-2xl border border-slate-200 bg-white/85 shadow-panel">
-      <NodePalette />
-      <div className="pointer-events-none absolute right-3 top-3 z-20 rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs text-slate-600 shadow-sm">
-        Drag from left panel, connect nodes, select to edit
+    <div className="relative h-full animate-pop-in overflow-hidden rounded-none border-x border-slate-200 bg-[#f8f8fa]">
+      <div className="absolute inset-x-0 top-0 z-20 flex h-11 items-center justify-between border-b border-[#e6dac2] bg-[#f4eddf]/95 px-4 backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#3d5677]">Workflow Canvas</p>
+        <p className="text-xs font-medium text-[#5a6471]">Drag from library and connect steps</p>
       </div>
+      <CanvasToolbar />
       <ReactFlow
+        className="pt-11"
         nodes={nodes.map((node) => ({
           ...node,
           style: {
             ...(node.style ?? {}),
-            boxShadow: invalidNodeIds.has(node.id) ? '0 0 0 2px rgba(244, 63, 94, 0.45)' : undefined
+            boxShadow: invalidNodeIds.has(node.id) ? '0 0 0 2px rgba(230, 88, 88, 0.5)' : undefined
           }
         }))}
         edges={edges}
@@ -93,13 +95,14 @@ const WorkflowCanvasInner = () => {
         defaultViewport={{ x: 0, y: 0, zoom: 0.95 }}
         deleteKeyCode={['Backspace', 'Delete']}
       >
-        <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#cbd5e1" />
+        <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#d8dce6" />
         <MiniMap
           pannable
           zoomable
           style={{
             borderRadius: 12,
-            border: '1px solid #cbd5e1'
+            border: '1px solid #d4d8e1',
+            background: '#ffffff'
           }}
         />
         <Controls showInteractive={false} />

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import type { AutomatedStepNodeData } from '../../types/workflow'
 import { useWorkflowStore } from '../../store/workflowStore'
 import { automatedStepNodeSchema } from '../../types/nodeSchemas'
-import { FormField, TextInput } from './FormPrimitives'
+import { FormField, selectInputClass, TextInput } from './FormPrimitives'
 
 interface AutomatedNodeFormProps {
   nodeId: string
@@ -48,7 +48,7 @@ const AutomatedNodeForm = ({ nodeId, data }: AutomatedNodeFormProps) => {
               actionParams: nextParams
             }))
           }}
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
+          className={selectInputClass}
         >
           <option value="">Select action</option>
           {automations.map((automation) => (
@@ -59,8 +59,8 @@ const AutomatedNodeForm = ({ nodeId, data }: AutomatedNodeFormProps) => {
         </select>
       </FormField>
       {selectedAction && selectedAction.params.length > 0 && (
-        <div className="space-y-2 rounded-lg border border-slate-200 bg-slate-50/70 p-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Action Parameters</p>
+        <div className="space-y-2 rounded-lg border border-white/10 bg-white/5 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Action Parameters</p>
           {selectedAction.params.map((param) => (
             <FormField key={param} label={param}>
               <TextInput

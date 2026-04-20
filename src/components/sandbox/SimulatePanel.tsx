@@ -4,9 +4,9 @@ import { useWorkflowStore } from '../../store/workflowStore'
 import { useSimulate } from '../../hooks/useSimulate'
 
 const statusStyles = {
-  success: 'border-emerald-200 bg-emerald-50 text-emerald-700',
-  warning: 'border-amber-200 bg-amber-50 text-amber-700',
-  error: 'border-rose-200 bg-rose-50 text-rose-700'
+  success: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200',
+  warning: 'border-amber-400/40 bg-amber-500/10 text-amber-200',
+  error: 'border-rose-400/40 bg-rose-500/10 text-rose-200'
 }
 
 const SimulatePanel = () => {
@@ -15,15 +15,16 @@ const SimulatePanel = () => {
   const validationIssues = useWorkflowStore((state) => state.validationIssues)
   const { runSimulation, workflowJson } = useSimulate()
   const [copied, setCopied] = useState(false)
+  const [forceError, setForceError] = useState(false)
 
   return (
-    <section className="animate-fade-up rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
+    <section className="animate-fade-up rounded-xl border border-white/10 bg-[#1f2330] p-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="font-heading text-lg text-slate-900">Sandbox</h2>
+        <h2 className="font-heading text-lg text-slate-100">Sandbox</h2>
         <span
           className={clsx(
             'rounded-full px-2 py-0.5 text-xs font-semibold',
-            validationIssues.length === 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
+            validationIssues.length === 0 ? 'bg-emerald-500/20 text-emerald-200' : 'bg-amber-500/20 text-amber-200'
           )}
         >
           {validationIssues.length === 0 ? 'Ready' : `${validationIssues.length} issues`}
@@ -34,10 +35,10 @@ const SimulatePanel = () => {
         <button
           type="button"
           onClick={() => {
-            void runSimulation()
+            void runSimulation({ forceError })
           }}
           disabled={isSimulating}
-          className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-[#4f46e5] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSimulating ? 'Running...' : 'Run Workflow'}
         </button>
@@ -48,26 +49,52 @@ const SimulatePanel = () => {
             setCopied(true)
             window.setTimeout(() => setCopied(false), 1500)
           }}
-          className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+          className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10"
         >
           {copied ? 'Copied JSON' : 'Export JSON'}
         </button>
       </div>
+      <label className="mt-3 flex items-center gap-2 text-xs text-slate-400">
+        <input
+          type="checkbox"
+          checked={forceError}
+          onChange={(event) => setForceError(event.target.checked)}
+          className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#6b7bff] focus:ring-[#6b7bff]/30"
+        />
+        Force API failure once
+      </label>
 
       {validationIssues.length > 0 && (
-        <div className="mt-3 space-y-1 rounded-lg border border-amber-200 bg-amber-50 p-3">
+        <div className="mt-3 space-y-1 rounded-lg border border-amber-400/30 bg-amber-500/10 p-3">
           {validationIssues.slice(0, 4).map((issue) => (
-            <p key={issue.id} className="text-xs text-amber-800">
+            <p key={issue.id} className="text-xs text-amber-100">
               {issue.message}
             </p>
           ))}
           {validationIssues.length > 4 && (
-            <p className="text-xs font-medium text-amber-800">+{validationIssues.length - 4} more</p>
+            <p className="text-xs font-medium text-amber-200">+{validationIssues.length - 4} more</p>
           )}
         </div>
       )}
 
       <div className="mt-3 space-y-2">
+        {simulationResult?.finalMessage && (
+          <div
+            className={clsx(
+              'rounded-lg border px-3 py-2 text-xs font-medium',
+              simulationResult.status === 'completed'
+                ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200'
+                : 'border-rose-400/40 bg-rose-500/10 text-rose-200'
+            )}
+          >
+            {simulationResult.finalMessage}
+          </div>
+        )}
+        {simulationResult?.totalNodes !== undefined && (
+          <p className="text-xs text-slate-400">
+            Executed {simulationResult.executedNodes ?? 0} of {simulationResult.totalNodes} nodes
+          </p>
+        )}
         {simulationResult?.steps.length ? (
           simulationResult.steps.map((step, index) => (
             <div
@@ -84,7 +111,7 @@ const SimulatePanel = () => {
             </div>
           ))
         ) : (
-          <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-4 text-sm text-slate-500">
+          <div className="rounded-lg border border-dashed border-white/20 bg-white/5 px-3 py-4 text-sm text-slate-400">
             Run the workflow to view an execution timeline.
           </div>
         )}
