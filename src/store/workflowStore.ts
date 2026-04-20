@@ -140,6 +140,10 @@ export const useWorkflowStore = create<WorkflowStore>((set, get) => ({
   },
 
   onConnect: (connection) => {
+    if (!connection.source || !connection.target || connection.source === connection.target) {
+      return
+    }
+
     set((state) => ({
       past: [...state.past, captureState(state)],
       future: [],

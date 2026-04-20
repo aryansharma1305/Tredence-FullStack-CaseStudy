@@ -5,7 +5,6 @@ import SimulatePanel from './components/sandbox/SimulatePanel'
 import { useAutomations } from './hooks/useAutomations'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useWorkflowValidation } from './hooks/useWorkflowValidation'
-
 const App = () => {
   const { isLoading, error } = useAutomations()
   useWorkflowValidation()
@@ -29,7 +28,6 @@ const App = () => {
       <main className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)_390px]">
         <NodeSidebar />
         <WorkflowCanvas />
-
         <aside className="flex min-h-0 flex-col border-t border-blue-900/40 bg-[#10213b] text-slate-100 lg:border-l lg:border-t-0">
           <div className="border-b border-white/10 px-5 py-5">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Node Settings</p>

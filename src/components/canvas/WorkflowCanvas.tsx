@@ -14,6 +14,9 @@ import { useWorkflowStore } from '../../store/workflowStore'
 import { isWorkflowNodeType } from '../../utils/nodeFactory'
 import CanvasToolbar from './CanvasToolbar'
 
+const staticNodeTypes = workflowNodeTypes
+const staticEdgeTypes = {}
+
 const WorkflowCanvasInner = () => {
   const nodes = useWorkflowStore((state) => state.nodes)
   const edges = useWorkflowStore((state) => state.edges)
@@ -55,7 +58,6 @@ const WorkflowCanvasInner = () => {
     () => new Set(validationIssues.filter((issue) => issue.nodeId).map((issue) => issue.nodeId as string)),
     [validationIssues]
   )
-
   return (
     <div className="relative h-full animate-pop-in overflow-hidden rounded-none border-x border-slate-200 bg-[#f8f8fa]">
       <div className="absolute inset-x-0 top-0 z-20 flex h-11 items-center justify-between border-b border-[#e6dac2] bg-[#f4eddf]/95 px-4 backdrop-blur">
@@ -73,7 +75,8 @@ const WorkflowCanvasInner = () => {
           }
         }))}
         edges={edges}
-        nodeTypes={workflowNodeTypes}
+        nodeTypes={staticNodeTypes}
+        edgeTypes={staticEdgeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}

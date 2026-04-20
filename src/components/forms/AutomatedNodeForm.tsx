@@ -57,6 +57,7 @@ const AutomatedNodeForm = ({ nodeId, data }: AutomatedNodeFormProps) => {
             </option>
           ))}
         </select>
+        {automations.length === 0 && <p className="mt-1 text-xs text-slate-400">Loading actions...</p>}
       </FormField>
       {selectedAction && selectedAction.params.length > 0 && (
         <div className="space-y-2 rounded-lg border border-white/10 bg-white/5 p-3">
