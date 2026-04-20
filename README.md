@@ -151,6 +151,8 @@ Returns a structured run summary with `status`, `finalMessage`, `executedNodes`,
 ## How to Run
 
 ```bash
+git clone https://github.com/aryansharma1305/Tredence-FullStack-CaseStudy.git
+cd Tredence-FullStack-CaseStudy
 npm install
 npm run dev
 ```
