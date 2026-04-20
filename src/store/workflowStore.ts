@@ -40,6 +40,7 @@ interface WorkflowStore {
   ) => void
   setSelectedNodeId: (nodeId: string | null) => void
   setSelectedEdgeId: (edgeId: string | null) => void
+  updateEdgeLabel: (edgeId: string, label: string) => void
   deleteSelected: () => void
   setAutomations: (automations: AutomationAction[]) => void
   setValidationIssues: (issues: ValidationIssue[]) => void
@@ -116,6 +117,18 @@ export const useWorkflowStore = create<WorkflowStore>((set) => ({
   },
   setSelectedEdgeId: (selectedEdgeId) => {
     set({ selectedEdgeId })
+  },
+  updateEdgeLabel: (edgeId, label) => {
+    set((state) => ({
+      edges: state.edges.map((edge) =>
+        edge.id === edgeId
+          ? {
+              ...edge,
+              label
+            }
+          : edge
+      )
+    }))
   },
   deleteSelected: () => {
     set((state) => {
