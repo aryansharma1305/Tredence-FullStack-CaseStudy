@@ -59,6 +59,7 @@ export interface AutomationAction {
 export interface SimulateRequest {
   nodes: WorkflowNode[]
   edges: Edge[]
+  forceError?: boolean
 }
 
 export type SimulationStatus = 'success' | 'warning' | 'error'
@@ -70,12 +71,17 @@ export interface SimulationStep {
   detail: string
   status: SimulationStatus
   timestamp: string
+  durationMs?: number
 }
 
 export interface SimulateResponse {
   runId: string
   status: 'completed' | 'failed'
   steps: SimulationStep[]
+  totalNodes?: number
+  executedNodes?: number
+  failedNodeId?: string | null
+  finalMessage?: string
 }
 
 export interface WorkflowGraph {

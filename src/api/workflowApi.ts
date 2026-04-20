@@ -7,7 +7,13 @@ import type {
 const toJson = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
     const text = await response.text()
-    throw new Error(text || 'Request failed')
+
+    try {
+      const parsed = JSON.parse(text) as { finalMessage?: string; error?: string }
+      throw new Error(parsed.finalMessage || parsed.error || 'Request failed')
+    } catch {
+      throw new Error(text || 'Request failed')
+    }
   }
 
   return (await response.json()) as T

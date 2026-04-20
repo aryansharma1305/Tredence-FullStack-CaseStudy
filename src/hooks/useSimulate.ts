@@ -23,7 +23,7 @@ export const useSimulate = () => {
     [nodes, edges]
   )
 
-  const runSimulation = async () => {
+  const runSimulation = async (options?: { forceError?: boolean }) => {
     const issues = validateWorkflow(nodes, edges)
     setValidationIssues(issues)
 
@@ -38,7 +38,7 @@ export const useSimulate = () => {
     setIsSimulating(true)
 
     try {
-      const result = await simulateWorkflow({ nodes, edges })
+      const result = await simulateWorkflow({ nodes, edges, forceError: options?.forceError })
       setSimulationResult(result)
 
       return {
@@ -49,6 +49,7 @@ export const useSimulate = () => {
       setSimulationResult({
         runId: `run-${crypto.randomUUID().slice(0, 8)}`,
         status: 'failed',
+        finalMessage: error instanceof Error ? error.message : 'Unknown error',
         steps: [
           {
             id: 'step-error',
