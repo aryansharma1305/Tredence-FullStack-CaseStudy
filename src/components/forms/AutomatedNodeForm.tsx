@@ -40,6 +40,7 @@ const AutomatedNodeForm = ({ nodeId, data }: AutomatedNodeFormProps) => {
           onChange={(event) => {
             const nextActionId = event.target.value
             const action = automations.find((automation) => automation.id === nextActionId)
+            // Reset params on action switch to avoid stale values leaking across actions.
             const nextParams = Object.fromEntries((action?.params ?? []).map((param) => [param, '']))
 
             updateNodeData(nodeId, (current) => ({

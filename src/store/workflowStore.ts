@@ -65,6 +65,7 @@ const cloneSnapshot = (snapshot: Snapshot): Snapshot => ({
 })
 
 const captureState = (state: Pick<WorkflowStore, 'nodes' | 'edges'>): Snapshot => ({
+  // Snapshots keep undo/redo deterministic across drag and form edits.
   nodes: structuredClone(state.nodes),
   edges: structuredClone(state.edges)
 })

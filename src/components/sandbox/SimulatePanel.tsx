@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useState } from 'react'
 import { useWorkflowStore } from '../../store/workflowStore'
 import { useSimulate } from '../../hooks/useSimulate'
+import WorkflowStats from './WorkflowStats'
 
 const statusStyles = {
   success: 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200',
@@ -13,6 +14,8 @@ const SimulatePanel = () => {
   const simulationResult = useWorkflowStore((state) => state.simulationResult)
   const isSimulating = useWorkflowStore((state) => state.isSimulating)
   const validationIssues = useWorkflowStore((state) => state.validationIssues)
+  const nodes = useWorkflowStore((state) => state.nodes)
+  const edges = useWorkflowStore((state) => state.edges)
   const { runSimulation, workflowJson } = useSimulate()
   const [copied, setCopied] = useState(false)
   const [forceError, setForceError] = useState(false)
@@ -95,6 +98,7 @@ const SimulatePanel = () => {
             Executed {simulationResult.executedNodes ?? 0} of {simulationResult.totalNodes} nodes
           </p>
         )}
+        {simulationResult?.status === 'completed' && <WorkflowStats nodes={nodes} edges={edges} />}
         {simulationResult?.steps.length ? (
           simulationResult.steps.map((step, index) => (
             <div

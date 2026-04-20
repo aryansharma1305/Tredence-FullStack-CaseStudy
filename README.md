@@ -48,6 +48,21 @@ A production-style case-study prototype for designing and simulating HR workflow
   - `Esc`: clear selection
   - `Cmd/Ctrl + Z`: undo
   - `Cmd/Ctrl + Shift + Z`: redo
+- Workflow stats after successful simulation:
+  - node counts by type
+  - edge count
+  - estimated duration
+  - complexity label
+
+## Why I Built It This Way
+
+The two areas I intentionally polished the most were dynamic automation params and graph validation.
+
+For the Automated Step form, the hard part is preventing stale param values when switching actions. I reset the param map every time `actionId` changes and regenerate keys from the selected API action. That keeps the form deterministic and avoids hidden state leaking between action types.
+
+For validation, I kept the graph checks in pure functions and separated them from React state. This made it easier to test failure paths quickly (missing Start/End, disconnected nodes, cycles) and helped avoid UI-specific coupling in simulation logic.
+
+I also chose Zustand because the canvas emits frequent updates; keeping store actions small and explicit felt cleaner than adding Redux boilerplate for this scope.
 
 ## Folder Structure
 
@@ -98,6 +113,7 @@ src/
     workflow.ts
   utils/
     autoLayout.ts
+    graphValidation.ts
     nodeFactory.ts
     workflowSerializer.ts
     workflowValidation.ts
@@ -157,7 +173,19 @@ npm run lint
 7. Add routing case in `src/components/forms/NodeFormPanel.tsx`
 8. Extend workflow validation and simulation messaging
 
-## Notes
+## Architecture Decisions
 
-- No auth and no backend persistence by design for this case study.
-- Data stays in-memory and is intended for local prototyping/demo.
+High-level ADRs are documented in [DECISIONS.md](./DECISIONS.md).
+
+## Known Limitations
+
+- All data is in-memory; refresh resets graph state unless exported/imported manually.
+- Cycle validation currently treats every cycle as invalid; conditional retry-loop semantics are not modeled yet.
+- Canvas rendering is optimized for case-study scale; very large graphs (50+ nodes) would need deeper memoization/selective subscriptions.
+
+## What I Would Do Differently With More Time
+
+- Backend integration with FastAPI + PostgreSQL persistence and workflow version history.
+- Role-based permissions for publish/edit actions and audit trail metadata.
+- Playwright E2E scenarios for the simulation pipeline and richer unit coverage for store transitions.
+- Collaborative editing via WebSockets or Liveblocks for multi-user workflow design.

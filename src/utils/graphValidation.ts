@@ -86,6 +86,7 @@ export const hasCycles = (nodes: WorkflowNode[], edges: Edge[]): boolean => {
 
 /**
  * Validates high-level graph constraints for simulation.
+ * Kept as a pure function to make edge-case tests cheap and deterministic.
  */
 export const validateWorkflow = (
   nodes: WorkflowNode[],
