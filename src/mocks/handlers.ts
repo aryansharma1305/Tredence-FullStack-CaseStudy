@@ -110,11 +110,11 @@ const createSteps = (nodes: WorkflowNode[]): SimulationStep[] => {
 }
 
 export const handlers = [
-  http.get('/api/automations', () => {
+  http.get('/automations', () => {
     return HttpResponse.json(automations)
   }),
 
-  http.post('/api/simulate', async ({ request }) => {
+  http.post('/simulate', async ({ request }) => {
     const body = (await request.json()) as SimulateRequest
     const path = resolveExecutionPath(body.nodes, body.edges)
 

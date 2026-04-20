@@ -22,11 +22,11 @@ A case-study prototype for an HR admin to design and test workflows visually.
 - Sandbox panel that:
   - serializes graph to JSON
   - validates graph structure
-  - calls mock `POST /api/simulate`
+  - calls mock `POST /simulate`
   - renders step-by-step execution logs
 - Mock API with:
-  - `GET /api/automations`
-  - `POST /api/simulate`
+  - `GET /automations`
+  - `POST /simulate`
 
 ## Folder Structure
 
@@ -85,6 +85,18 @@ src/
 - Validation is centralized in `utils/workflowValidation.ts` and reused by live validation + simulation guard.
 - Zustand keeps graph, selection, validation, and simulation state in one predictable state layer.
 
+## JD Requirement Mapping
+
+- Canvas with Start/Task/Approval/Automated/End nodes: implemented with custom React Flow node components
+- Drag nodes from sidebar to canvas: implemented in `NodePalette` + drop handling in `WorkflowCanvas`
+- Connect, select, and delete nodes/edges: implemented with controlled React Flow + store actions
+- Basic constraints (including Start-first behavior): implemented in `workflowValidation` (single Start, no incoming to Start, reachability, cycles)
+- Node form panel per type: implemented with dedicated form files under `components/forms`
+- Dynamic automated action params: implemented from `GET /automations` response schema
+- Mock API layer: implemented with MSW handlers and a separate API client layer
+- Sandbox simulation panel: implemented with `useSimulate` and timeline render
+- README architecture + decisions + extension guidance: included below
+
 ## Validation Rules
 
 - Exactly one Start node must exist
@@ -100,7 +112,7 @@ src/
 
 ## Mock API Contract
 
-### `GET /api/automations`
+### `GET /automations`
 
 Returns action definitions:
 
@@ -111,7 +123,7 @@ Returns action definitions:
 ]
 ```
 
-### `POST /api/simulate`
+### `POST /simulate`
 
 Input:
 

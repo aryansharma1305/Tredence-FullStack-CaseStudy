@@ -4,8 +4,6 @@ import type {
   SimulateResponse
 } from '../types/workflow'
 
-const API_BASE = '/api'
-
 const toJson = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
     const text = await response.text()
@@ -16,12 +14,12 @@ const toJson = async <T>(response: Response): Promise<T> => {
 }
 
 export const getAutomations = async (): Promise<AutomationAction[]> => {
-  const response = await fetch(`${API_BASE}/automations`)
+  const response = await fetch('/automations')
   return toJson<AutomationAction[]>(response)
 }
 
 export const simulateWorkflow = async (payload: SimulateRequest): Promise<SimulateResponse> => {
-  const response = await fetch(`${API_BASE}/simulate`, {
+  const response = await fetch('/simulate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
