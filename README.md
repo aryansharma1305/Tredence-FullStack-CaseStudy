@@ -2,6 +2,10 @@
 
 A production-style case-study prototype for designing and simulating HR workflows (onboarding, leave approval, automation chains) with React Flow.
 
+## Screenshot
+
+![HR Workflow Designer](./public/workflow-designer-screenshot.png)
+
 ## Stack
 
 - React + TypeScript + Vite
