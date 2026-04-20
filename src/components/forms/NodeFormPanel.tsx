@@ -34,7 +34,7 @@ const NodeFormPanel = () => {
   const selectedNodeType = selectedNode?.type as WorkflowNodeType | undefined
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
+    <section className="animate-fade-up rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-heading text-lg text-slate-900">Node Configuration</h2>
         {(selectedNode || selectedEdge) && (

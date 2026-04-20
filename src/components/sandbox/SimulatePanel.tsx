@@ -17,7 +17,7 @@ const SimulatePanel = () => {
   const [copied, setCopied] = useState(false)
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
+    <section className="animate-fade-up rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-panel">
       <div className="flex items-center justify-between gap-2">
         <h2 className="font-heading text-lg text-slate-900">Sandbox</h2>
         <span

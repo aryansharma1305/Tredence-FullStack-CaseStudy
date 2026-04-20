@@ -57,8 +57,11 @@ const WorkflowCanvasInner = () => {
   )
 
   return (
-    <div className="relative h-full rounded-2xl border border-slate-200 bg-white/85 shadow-panel">
+    <div className="relative h-full animate-pop-in rounded-2xl border border-slate-200 bg-white/85 shadow-panel">
       <NodePalette />
+      <div className="pointer-events-none absolute right-3 top-3 z-20 rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-xs text-slate-600 shadow-sm">
+        Drag from left panel, connect nodes, select to edit
+      </div>
       <ReactFlow
         nodes={nodes.map((node) => ({
           ...node,

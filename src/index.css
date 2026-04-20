@@ -26,6 +26,7 @@ body {
     radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.14), transparent 35%),
     radial-gradient(circle at 88% 10%, rgba(249, 115, 22, 0.12), transparent 30%),
     linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: #0f172a;
 }
 
 .react-flow__node {
@@ -42,4 +43,18 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.35);
+  border-radius: 99px;
 }
