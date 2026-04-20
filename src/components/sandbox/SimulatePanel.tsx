@@ -38,7 +38,7 @@ const SimulatePanel = () => {
             void runSimulation({ forceError })
           }}
           disabled={isSimulating}
-          className="rounded-lg bg-[#4f46e5] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSimulating ? 'Running...' : 'Run Workflow'}
         </button>
@@ -59,7 +59,7 @@ const SimulatePanel = () => {
           type="checkbox"
           checked={forceError}
           onChange={(event) => setForceError(event.target.checked)}
-          className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#6b7bff] focus:ring-[#6b7bff]/30"
+          className="h-4 w-4 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-blue-500/30"
         />
         Force API failure once
       </label>

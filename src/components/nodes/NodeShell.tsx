@@ -5,7 +5,7 @@ interface NodeShellProps {
   badge: string
   title: string
   subtitle?: string
-  icon: ReactNode
+  icon?: ReactNode
   tone: 'sky' | 'emerald' | 'amber' | 'violet' | 'rose'
   selected?: boolean
   issues: string[]
@@ -14,19 +14,19 @@ interface NodeShellProps {
 }
 
 const toneStyles = {
-  sky: 'border-l-4 border-l-sky-500',
-  emerald: 'border-l-4 border-l-emerald-500',
-  amber: 'border-l-4 border-l-amber-500',
-  violet: 'border-l-4 border-l-violet-500',
-  rose: 'border-l-4 border-l-rose-500'
+  sky: 'border-l-4 border-l-blue-600',
+  emerald: 'border-l-4 border-l-blue-500',
+  amber: 'border-l-4 border-l-blue-400',
+  violet: 'border-l-4 border-l-blue-300',
+  rose: 'border-l-4 border-l-blue-700'
 }
 
 const badgeStyles = {
-  sky: 'border-sky-200 bg-sky-100 text-sky-700',
-  emerald: 'border-emerald-200 bg-emerald-100 text-emerald-700',
-  amber: 'border-amber-200 bg-amber-100 text-amber-700',
-  violet: 'border-violet-200 bg-violet-100 text-violet-700',
-  rose: 'border-rose-200 bg-rose-100 text-rose-700'
+  sky: 'border-blue-200 bg-blue-100 text-blue-700',
+  emerald: 'border-blue-200 bg-blue-50 text-blue-700',
+  amber: 'border-blue-200 bg-blue-50 text-blue-600',
+  violet: 'border-blue-200 bg-blue-50 text-blue-600',
+  rose: 'border-blue-200 bg-blue-100 text-blue-800'
 }
 
 const NodeShell = ({
@@ -56,7 +56,7 @@ const NodeShell = ({
         {metadata}
       </div>
       <div className="mt-2 flex items-start gap-2">
-        <div className="mt-0.5 text-slate-700">{icon}</div>
+        {icon && <div className="mt-0.5 text-slate-700">{icon}</div>}
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-slate-900">{title}</p>
           {subtitle && <p className="mt-0.5 line-clamp-2 text-xs text-slate-500">{subtitle}</p>}

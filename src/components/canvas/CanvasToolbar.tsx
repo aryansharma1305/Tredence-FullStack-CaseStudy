@@ -21,17 +21,17 @@ const CanvasToolbar = () => {
           type="button"
           onClick={undo}
           disabled={pastCount === 0}
-          className="rounded-md px-2 py-1 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-30"
+          className="rounded-md border border-slate-200 px-2 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ↶
+          Undo
         </button>
         <button
           type="button"
           onClick={redo}
           disabled={futureCount === 0}
-          className="rounded-md px-2 py-1 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-30"
+          className="rounded-md border border-slate-200 px-2 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ↷
+          Redo
         </button>
         <button
           type="button"

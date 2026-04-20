@@ -14,14 +14,13 @@ const AutomatedNode = ({ id, data, selected }: NodeProps<AutomatedStepNodeData>)
         badge="Automated"
         title={data.title || 'Automated Step'}
         subtitle={data.actionId || 'Action not selected'}
-        icon={<span className="text-base">⚙</span>}
         tone="violet"
         selected={selected}
         issues={issues}
         metadata={<span className="text-xs text-slate-500">{actionCount} params</span>}
       />
-      <Handle id="in" type="target" position={Position.Left} className="!bg-violet-500" />
-      <Handle id="out" type="source" position={Position.Right} className="!bg-violet-500" />
+      <Handle id="in" type="target" position={Position.Left} className="!bg-blue-400" />
+      <Handle id="out" type="source" position={Position.Right} className="!bg-blue-400" />
     </>
   )
 }

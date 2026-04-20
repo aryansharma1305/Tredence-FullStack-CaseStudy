@@ -5,19 +5,11 @@ import { nodeTemplates } from '../../utils/nodeFactory'
 import { buildLeaveApprovalTemplate, buildOnboardingTemplate } from '../../constants/workflowTemplates'
 
 const tones: Record<string, string> = {
-  start: 'border-emerald-300 text-emerald-700',
-  task: 'border-slate-300 text-slate-800',
-  approval: 'border-amber-400 text-amber-700',
-  automated: 'border-sky-400 border-dashed text-sky-700',
-  end: 'border-rose-400 text-rose-700'
-}
-
-const icons: Record<string, string> = {
-  start: '▶',
-  task: '☑',
-  approval: '⚑',
-  automated: '⚡',
-  end: '■'
+  start: 'border-blue-500 text-blue-700',
+  task: 'border-blue-400 text-blue-700',
+  approval: 'border-blue-400 text-blue-700',
+  automated: 'border-blue-300 border-dashed text-blue-700',
+  end: 'border-blue-600 text-blue-800'
 }
 
 const NodeSidebar = () => {
@@ -53,7 +45,6 @@ const NodeSidebar = () => {
                 disabled ? 'cursor-not-allowed opacity-40' : 'hover:shadow-sm'
               )}
             >
-              <span className="text-sm">{icons[template.type]}</span>
               <span>{template.title}</span>
             </button>
           )

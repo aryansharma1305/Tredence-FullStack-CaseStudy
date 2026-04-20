@@ -13,10 +13,10 @@ const App = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#f0f2f6]">
-      <header className="flex h-14 items-center justify-between border-b border-slate-300 bg-white px-5">
+      <header className="flex h-14 items-center justify-between border-b border-blue-100 bg-white px-5">
         <div className="flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#4f46e5] text-sm font-bold text-white">HR</div>
-          <p className="text-xl font-heading text-slate-800">Workflow Builder</p>
+          <div className="grid h-9 w-9 place-items-center rounded-lg bg-blue-600 text-sm font-bold text-white">HR</div>
+          <p className="text-xl font-heading text-blue-900">Workflow Builder</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
@@ -30,7 +30,7 @@ const App = () => {
         <NodeSidebar />
         <WorkflowCanvas />
 
-        <aside className="flex min-h-0 flex-col border-t border-[#2b2d3d] bg-[#171923] text-slate-100 lg:border-l lg:border-t-0">
+        <aside className="flex min-h-0 flex-col border-t border-blue-900/40 bg-[#10213b] text-slate-100 lg:border-l lg:border-t-0">
           <div className="border-b border-white/10 px-5 py-5">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Node Settings</p>
           </div>
@@ -40,7 +40,7 @@ const App = () => {
           </div>
           <div className="border-t border-white/10 px-5 py-4">
             <p className="text-xs text-slate-400">API Explorer</p>
-            <p className="mt-1 text-xs text-slate-500">/automations • /simulate</p>
+            <p className="mt-1 text-xs text-slate-500">/automations, /simulate</p>
           </div>
         </aside>
       </main>

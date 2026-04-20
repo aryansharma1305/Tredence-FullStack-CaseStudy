@@ -13,7 +13,6 @@ const TaskNode = ({ id, data, selected }: NodeProps<TaskNodeData>) => {
         badge="Task"
         title={data.title || 'Task'}
         subtitle={data.description || 'Human task'}
-        icon={<span className="text-base">☑</span>}
         tone="emerald"
         selected={selected}
         issues={issues}
@@ -21,8 +20,8 @@ const TaskNode = ({ id, data, selected }: NodeProps<TaskNodeData>) => {
       >
         {data.dueDate && <p className="mt-2 text-[11px] font-medium text-slate-500">Due {data.dueDate}</p>}
       </NodeShell>
-      <Handle id="in" type="target" position={Position.Left} className="!bg-emerald-500" />
-      <Handle id="out" type="source" position={Position.Right} className="!bg-emerald-500" />
+      <Handle id="in" type="target" position={Position.Left} className="!bg-blue-500" />
+      <Handle id="out" type="source" position={Position.Right} className="!bg-blue-500" />
     </>
   )
 }

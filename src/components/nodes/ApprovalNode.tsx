@@ -13,7 +13,6 @@ const ApprovalNode = ({ id, data, selected }: NodeProps<ApprovalNodeData>) => {
         badge="Approval"
         title={data.title || 'Approval'}
         subtitle={data.approverRole || 'Role not set'}
-        icon={<span className="text-base">✔</span>}
         tone="amber"
         selected={selected}
         issues={issues}
@@ -23,8 +22,8 @@ const ApprovalNode = ({ id, data, selected }: NodeProps<ApprovalNodeData>) => {
           </span>
         }
       />
-      <Handle id="in" type="target" position={Position.Left} className="!bg-amber-500" />
-      <Handle id="out" type="source" position={Position.Right} className="!bg-amber-500" />
+      <Handle id="in" type="target" position={Position.Left} className="!bg-blue-500" />
+      <Handle id="out" type="source" position={Position.Right} className="!bg-blue-500" />
     </>
   )
 }

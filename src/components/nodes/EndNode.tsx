@@ -13,12 +13,11 @@ const EndNode = ({ id, data, selected }: NodeProps<EndNodeData>) => {
         badge="End"
         title={data.message || 'End'}
         subtitle={data.summaryFlag ? 'Summary generated' : 'Summary skipped'}
-        icon={<span className="text-base">■</span>}
         tone="rose"
         selected={selected}
         issues={issues}
       />
-      <Handle id="in" type="target" position={Position.Left} className="!bg-rose-500" />
+      <Handle id="in" type="target" position={Position.Left} className="!bg-blue-700" />
     </>
   )
 }

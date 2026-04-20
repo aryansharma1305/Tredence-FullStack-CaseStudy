@@ -13,13 +13,12 @@ const StartNode = ({ id, data, selected }: NodeProps<StartNodeData>) => {
         badge="Start"
         title={data.title || 'Start'}
         subtitle="Entry point"
-        icon={<span className="text-base">▶</span>}
         tone="sky"
         selected={selected}
         issues={issues}
         metadata={<span className="text-xs text-slate-500">{data.metadata.length} meta</span>}
       />
-      <Handle id="out" type="source" position={Position.Right} className="!bg-sky-500" />
+      <Handle id="out" type="source" position={Position.Right} className="!bg-blue-600" />
     </>
   )
 }

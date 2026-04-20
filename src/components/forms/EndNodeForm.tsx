@@ -38,7 +38,7 @@ const EndNodeForm = ({ nodeId, data }: EndNodeFormProps) => {
               summaryFlag: event.target.checked
             }))
           }
-          className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#6b7bff] focus:ring-[#6b7bff]/30"
+          className="h-4 w-4 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-blue-500/30"
         />
       </label>
     </div>

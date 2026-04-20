@@ -22,7 +22,7 @@ export const TextInput = ({ className, ...props }: InputHTMLAttributes<HTMLInput
     <input
       {...props}
       className={clsx(
-        'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-[#6b7bff] focus:ring-2 focus:ring-[#6b7bff]/25',
+        'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25',
         className
       )}
     />
@@ -34,7 +34,7 @@ export const TextAreaInput = ({ className, ...props }: TextareaHTMLAttributes<HT
     <textarea
       {...props}
       className={clsx(
-        'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-[#6b7bff] focus:ring-2 focus:ring-[#6b7bff]/25',
+        'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25',
         className
       )}
     />
@@ -42,4 +42,4 @@ export const TextAreaInput = ({ className, ...props }: TextareaHTMLAttributes<HT
 }
 
 export const selectInputClass =
-  'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#6b7bff] focus:ring-2 focus:ring-[#6b7bff]/25'
+  'w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/25'
