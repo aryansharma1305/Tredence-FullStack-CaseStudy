@@ -64,6 +64,45 @@ For validation, I kept the graph checks in pure functions and separated them fro
 
 I also chose Zustand because the canvas emits frequent updates; keeping store actions small and explicit felt cleaner than adding Redux boilerplate for this scope.
 
+## Architecture Diagram
+
+```mermaid
+flowchart LR
+  subgraph UI["UI Layer (React + React Flow)"]
+    Sidebar["NodeSidebar\n(Drag Node Types/Templates)"]
+    Canvas["WorkflowCanvas\n(Nodes, Edges, Selection)"]
+    Forms["NodeFormPanel + Node Forms\n(Typed Controlled Inputs)"]
+    Sandbox["SimulatePanel\n(Run + Execution Timeline)"]
+  end
+
+  subgraph State["State + Domain Logic"]
+    Store["Zustand Store\n(nodes, edges, selection,\nvalidation, simulation)"]
+    Validation["useWorkflowValidation +\nworkflowValidation.ts"]
+    SimHook["useSimulate"]
+    GraphChecks["graphValidation.ts\n(pure graph checks)"]
+  end
+
+  subgraph Data["Mock API Layer"]
+    Client["workflowApi.ts\n(GET /automations,\nPOST /simulate)"]
+    MSW["MSW handlers\nmocks/browser.ts + mocks/handlers.ts"]
+  end
+
+  Sidebar -->|"drag/drop add nodes"| Store
+  Canvas <-->|"read/write graph"| Store
+  Forms <-->|"update typed node data"| Store
+  Sandbox -->|"run workflow"| SimHook
+
+  SimHook --> Validation
+  SimHook --> GraphChecks
+  SimHook --> Client
+  Validation --> Store
+  SimHook -->|"set simulation result"| Store
+  Client <--> MSW
+  Store --> Canvas
+  Store --> Forms
+  Store --> Sandbox
+```
+
 ## Folder Structure
 
 ```text
